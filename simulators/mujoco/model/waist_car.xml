@@ -1,0 +1,88 @@
+<mujoco model="waist_car">
+  <option timestep="0.001" iterations="50" solver="Newton" tolerance="1e-10" integrator="RK4" cone="elliptic" sdf_iterations="10" sdf_initpoints="40"/>
+  <compiler angle="degree" meshdir="meshes" inertiafromgeom="false" eulerseq="XYZ"/>
+
+  <!-- <visual>
+    <global cameraid="0" realtime="0.5"/>
+  </visual> -->
+
+  <asset>
+    <material name="light_gray" rgba="0.76 0.76 0.76 1"/>
+    <material name="medium_gray" rgba="0.3 0.3 0.3 1"/>
+    <mesh name="base_link" file="base_link.STL"/>
+    <mesh name="front body" file="front body.STL"/>
+    <mesh name="front wheel" file="front wheel.STL"/>
+    <mesh name="rear wheel" file="rear wheel.STL"/>
+  </asset>
+
+  <default>
+    <default class="wc">
+      <geom material="medium_gray"/>
+      <site rgba="1 0 0 1" size="0.01" group="5"/>
+      <!-- <joint frictionloss="0.4" armature="0.02"/> -->
+      <joint frictionloss="0.0" armature="0.02"/>
+      <!-- <position inheritrange="1" kp="75" kv="5"/> -->
+      <default class="visual">
+        <geom type="mesh" contype="0" conaffinity="0" group="2"/>
+      </default>
+      <default class="collision">
+        <geom group="3"/>
+      </default>
+    </default>
+    <default class="collision_wheel">
+      <geom group="3" type="ellipsoid" size="0.09 0.09 0.015" rgba="0.3 0.3 0.3 1.0" euler="90 0 0"
+        friction="0.5 0.005 0.0001" priority="1" margin="0.0" gap="0" solimp="0.0 0.95 0.001 0.5 2" solref="0.02 1"/>
+    </default>
+  </default>
+
+  <worldbody>
+    <body name="body_back" pos="0 0 0.09" childclass="wc">
+      <freejoint/>
+      <camera name="body_camera" mode="trackcom" pos="0.3 -1.5 0.5" euler="70 0 0"/>
+      <inertial pos="0.14306 0.0 0.0" mass="1.70488" diaginertia="0.02035 0.06089 0.07798"/>
+      <geom class="visual" name="body_back_shape" type="mesh" mesh="base_link" rgba="0.8 0.5 0.5 1.0" />
+      <geom class="collision" size="0.18 0.15 0.045" pos="0.15 0.0 0.0" type="box"/>
+      <site name="imu" euler="0.0 0.0 -90.0"/>  
+      <body name="wheel_back" pos="0 0 0" euler = "0 0 0">
+        <inertial pos="0.0 0.0 0.0" mass="0.43239" diaginertia="0.01095 0.00140 0.01095"/>
+        <joint name="joint_back" type = "hinge" pos = "0 0 0" axis = "0 -1 0" />
+        <geom class="visual" name="wheel_back_shape" type="mesh" mesh="rear wheel" />
+        <geom class="collision_wheel" pos="0 0.18 0.0"/>
+        <geom class="collision_wheel" pos="0 -0.18 0.0"/>
+      </body>
+      <body name="body_front" pos="0.3 0 0">
+        <inertial pos="0.16170 0.0 0.00" mass="5.91501" diaginertia="0.05071 0.20020 0.23789"/>
+        <joint name="joint_waist" type="hinge" pos="0 0 0" axis="0 -1 0" range = "-140 140" />
+        <geom class="visual" name="body_front_shape" type="mesh" mesh="front body" rgba="0.5 0.8 0.5 1.0" />
+        <geom class="collision" size="0.19 0.12 0.07" pos="0.15 0.0 0.0" type="box"/>
+        <body name="wheel_front" pos="0.3 0 0" euler = "0 0 0">
+          <inertial pos="0.0 0.0 0.0" mass="0.35533" diaginertia="0.00655 0.00135 0.00655"/>
+          <joint name="joint_front" type = "hinge" pos = "0 0 0" axis = "0 1 0" />
+          <geom class="visual" name="wheel_front_shape" type="mesh" mesh="front wheel" euler = "0 0 0" />
+          <geom class="collision_wheel" pos="0 0.14 0.0"/>
+          <geom class="collision_wheel" pos="0 -0.14 0.0"/>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+
+  <actuator>
+    <motor name="motor_back" ctrllimited="true" ctrlrange="-20 20" joint="joint_back"/>
+    <motor name="motor_waist" ctrllimited="true" ctrlrange="-33 33" joint="joint_waist"/>
+  </actuator>
+
+  <sensor>
+    <!-- <jointpos name="pos_front_joint" joint="joint_front"/> -->
+    <jointpos name="pos_waist_joint" joint="joint_waist"/>
+    <jointpos name="pos_back_joint" joint="joint_back"/>
+    <!-- <jointvel name="vel_front_joint" joint="joint_front"/> -->
+    <jointvel name="vel_waist_joint" joint="joint_waist"/>
+    <jointvel name="vel_back_joint" joint="joint_back"/>
+    <subtreecom name="ipos" body="body_back"/>
+    <gyro name="gyro" site="imu"/>
+    <accelerometer name="accel" site="imu"/>
+    <framequat name="orient" objtype="site" objname="imu"/>
+    <framepos name="pos_back_wheel_center" objtype="body" objname="wheel_back"/>
+  </sensor>
+  
+</mujoco>
