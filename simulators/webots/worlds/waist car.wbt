@@ -1,0 +1,157 @@
+#VRML_SIM R2021a utf8
+WorldInfo {
+  basicTimeStep 1
+  coordinateSystem "NUE"
+  contactProperties [
+    ContactProperties {
+      bounce 0
+    }
+  ]
+}
+Viewpoint {
+  orientation 0.16170902941072246 0.9742695123300696 0.15700034124539472 4.715872293081185
+  position -2.5042414250830696 0.9404624762866711 -0.12938743456760277
+  follow "robot"
+}
+DirectionalLight {
+  direction 1 -1 1
+  intensity 3
+}
+Floor {
+  size 100 100
+}
+Robot {
+  translation 0 0.2 0
+  rotation 1 0 0 0
+  children [
+    GPS {
+      translation 0 -0.1 0
+      rotation 0 0 1 1.57
+    }
+    InertialUnit {
+      rotation 1 0 0 0
+      name "imu"
+    }
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.666667 0 0.498039
+        metalness 0
+      }
+      geometry DEF halfbody Box {
+        size 0.2 0.2 0.02
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        anchor 0 -0.1 0
+      }
+      device [
+        PositionSensor {
+          name "rear_wheel_sensor"
+        }
+        RotationalMotor {
+          name "rear_wheel_motor"
+          maxVelocity 35
+          maxTorque 50
+        }
+      ]
+      endPoint Solid {
+        translation -1.8591548015445178e-10 -0.09999877487146233 7.734751913014922e-07
+        rotation 3.492746466781296e-08 -1.1527894330371794e-07 0.9999999999999928 1.5700001274787423
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0.458824 0.458824 0.458824
+              roughness 0.5
+              metalness 0
+            }
+            geometry Cylinder {
+              height 0.2
+              radius 0.05
+            }
+          }
+        ]
+        name "rear wheel"
+        boundingObject USE wheel
+        physics Physics {
+          density -1
+          mass 0.5
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 2.2
+        anchor 0 0.1 0
+      }
+      device [
+        PositionSensor {
+          name "waist_sensor"
+        }
+        RotationalMotor {
+          name "waist_motor"
+          maxTorque 50
+        }
+      ]
+      endPoint Solid {
+        translation 0 0.04114926742038269 0.0808491884612483
+        rotation 0.6656261467878535 -0.6650963017886665 0.3385095893167488 2.4883049424455157
+        children [
+          Shape {
+            appearance PBRAppearance {
+              baseColor 0 0.666667 0
+              roughness 0.5
+              metalness 0
+            }
+            geometry USE halfbody
+          }
+          HingeJoint {
+            jointParameters HingeJointParameters {
+              axis 0 1 0
+              anchor 0.1 0 0
+            }
+            device [
+              PositionSensor {
+                name "front wheel position sensor"
+              }
+            ]
+            endPoint Solid {
+              translation 0.1 0 0
+              children [
+                USE wheel
+              ]
+              name "front wheel"
+              boundingObject USE wheel
+              physics Physics {
+                density -1
+                mass 0.001
+              }
+            }
+          }
+        ]
+        name "front body"
+        boundingObject Box {
+          size 0.05 0.2 0.02
+        }
+        physics Physics {
+          density -1
+          mass 2
+          centerOfMass [
+            0 0 0
+          ]
+        }
+      }
+    }
+  ]
+  boundingObject Box {
+    size 0.2 0.05 0.02
+  }
+  physics Physics {
+    density -1
+    mass 1.5
+    centerOfMass [
+      0 0 0
+    ]
+  }
+  controller "waistcar_jump_cpp"
+}
