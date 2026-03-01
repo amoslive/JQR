@@ -1,0 +1,7 @@
+float32 left_updown
+float32 left_side
+float32 right_updown
+float32 right_side
+float32[4] rotates
+uint8[8] buttons
+uint8 flags
