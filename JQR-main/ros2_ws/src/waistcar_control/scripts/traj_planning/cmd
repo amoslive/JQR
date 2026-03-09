@@ -1,7 +1,0 @@
-//轨迹
-cd ~/waistcar_ws/src/waistcar_control/scripts_unused/traj_planning/
-python3 ./traj_jump_long_mat2txt.py 
-python3 ./traj_jump_high_mat2txt.py 
-
-//matlab画图
-C:\Users\fit109\Desktop\跳跃\跳跃规划matlab\data_change\plot_traj_txt.m

@@ -1,4 +1,0 @@
-int32 car_mode
-float32 waist_pos_ref
-float32 wheel_torque_ref
-bool waist_int_clear
