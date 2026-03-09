@@ -86,6 +86,7 @@ The motor drivers provide **torque feedback**, which is used to measure:
 - waist joint torque
 
 Torque feedback is used for monitoring actuator performance and conducting motor torque experiments.
+
 ---
 
 # Control Hardware
