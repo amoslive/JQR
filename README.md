@@ -6,7 +6,7 @@ A waist-actuated wheel robot capable of **2-wheel balancing**, **4-wheel
 driving**, and **active jumping in 2-wheel mode**.
 
 This repository contains the **control stack, simulation environments,
-dynamic modeling, and experimental logs** developed for my undergraduate
+dynamic modeling, and experimental logs** developed for my master
 thesis.
 
 
