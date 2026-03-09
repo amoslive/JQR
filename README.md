@@ -56,7 +56,7 @@ task requirements.
 - `simulators/matlab/` : MATLAB/Simulink dynamics & analysis
 - `simulators/webots/` : Webots simulation project
 - `simulators/mujoco/` : MuJoCo model + scripts
-- `data/` : datasets (rosbag2 / logs) **not stored directly in git**
+- `data/` : datasets 
 - `docs/` : additional documentation
 
 ------------------------------------------------------------------------
