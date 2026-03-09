@@ -89,6 +89,35 @@ Torque feedback is used for monitoring actuator performance and conducting motor
 
 ---
 
+## Power System
+
+The robot uses a multi-voltage power system to supply different components.
+
+### Waist Motor Power
+
+The waist motor is powered by a **72 V power supply**, provided by **three DJI FPV batteries connected in series**.
+
+This high-voltage supply is required to support the torque demand of the waist actuator during dynamic motions such as jumping.
+
+### Wheel Motor Power
+
+The wheel motor is powered by a **24 V power supply**, provided by **a single DJI FPV battery**.
+
+This supply is used for wheel locomotion and balancing control.
+
+### Onboard Electronics
+
+Low-voltage electronics, including:
+
+- onboard computer
+- control boards
+- communication interfaces
+- sensors
+
+are powered by **5 V**, which is generated from the **24 V battery using a DC–DC converter**.
+
+---
+
 # Control Hardware
 
 The robot control system includes:
