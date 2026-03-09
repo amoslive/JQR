@@ -123,7 +123,7 @@ This repository is intended for **academic research and thesis review**.
 
 ## Author
 
-Master Thesis Project
+Master Thesis Project in FAU
 
 Research on Jumping Mechanism and
 Control Methods of Reconfigurable
