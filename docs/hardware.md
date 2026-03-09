@@ -93,7 +93,19 @@ The motor drivers provide **torque feedback**, which is used to measure:
 Torque feedback is used for monitoring actuator performance and conducting motor torque experiments.
 
 ---
+## Remote Control Interface
 
+The robot is operated using an **8-channel RC transmitter (model aircraft remote controller)**.
+
+The remote controller is used for high-level command inputs, including:
+
+- velocity command
+- robot posture control
+- task switching
+
+The RC signals are received by the onboard control system and translated into control commands within the ROS2 framework.
+
+---
 ## Power System
 
 The robot uses a **multi-voltage power architecture** to supply different components.
