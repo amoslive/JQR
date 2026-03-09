@@ -44,7 +44,7 @@ Responsible for:
 - locomotion
 - balancing control
 
-The motor is controlled through a **CANOpen motor driver**.
+
 
 ### Waist Joint Motor
 
@@ -56,6 +56,7 @@ Responsible for:
 - dynamic motion generation (jumping)
 
 The waist actuator enables active body motion.
+The motor is controlled through a **CANOpen motor driver**.
 
 ---
 
