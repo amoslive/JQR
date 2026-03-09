@@ -18,6 +18,10 @@
 ```bash
 cd ros2_ws
 colcon build --symlink-install
-source install/setup.bash
-# example launch:
-ros2 launch wheelbot_bringup bringup.launch.py
+. install/setup.bash
+  . can_init.sh && ros2 run py01_topic canopen_motor_node
+ros2 launch waistcar_control launch.xml
+ros2 run unitree_control unitree_motor_node 
+//Kill the Program
+screen -ls |grep ached | cut -d. -f1| awk '{print $1}' | xargs kill
+
