@@ -114,14 +114,7 @@ Experimental logs are stored in `data/`.
 
 ------------------------------------------------------------------------
 
-## Data
 
-The `data/` folder contains references to experimental datasets.
-
-Due to size limitations, **rosbag2 logs are not stored directly in this
-repository**.
-
-------------------------------------------------------------------------
 
 ## License
 
@@ -131,10 +124,12 @@ This repository is intended for **academic research and thesis review**.
 
 ## Author
 
-Bachelor Thesis Project
+Master Thesis Project
 
-Waist-Actuated Wheel Robot\
-2025
+Research on Jumping Mechanism and
+Control Methods of Reconfigurable
+Robots\
+2026
 
 
 ///////////////////////////orgin/////////////////////////
