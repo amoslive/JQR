@@ -52,50 +52,13 @@ task requirements.
 
 ------------------------------------------------------------------------
 
-## System Architecture
-
-The overall system contains three main components.
-
-### Real Robot Control (ROS2)
-
--   CANOpen motor drivers
--   Unitree motor interface
--   Balance controller
--   Waist actuation controller
--   ROS2 communication framework
-
-### Simulation Environments
-
-Multiple simulation platforms are used for development and validation.
-
--   **MATLAB / Simulink** -- dynamics modeling and controller analysis
--   **Webots** -- robot simulation environment
--   **MuJoCo** -- physics simulation for dynamic motion
-
-### Experimental Data
-
-Experimental logs include:
-
--   rosbag2 recordings
--   motor experiments
--   system identification data
-
-------------------------------------------------------------------------
-
-## Repository Layout
-
-    ros2_ws/                 ROS2 workspace (real robot control stack)
-
-    simulators/
-      matlab/                MATLAB / Simulink dynamics modeling
-      webots/                Webots simulation project
-      mujoco/                MuJoCo robot model and scripts
-
-    data/                    experimental datasets (rosbag2 / logs)
-    docs/                    additional documentation
-    assets/                  images and videos used in README
-
-Large datasets are **not stored directly in the repository**.
+## Repository layout
+- `ros2_ws/` : ROS2 workspace (real robot + ROS tools)
+- `simulators/matlab/` : MATLAB/Simulink dynamics & analysis
+- `simulators/webots/` : Webots simulation project
+- `simulators/mujoco/` : MuJoCo model + scripts
+- `data/` : datasets (rosbag2 / logs) **not stored directly in git**
+- `docs/` : additional documentation
 
 ------------------------------------------------------------------------
 
@@ -130,31 +93,7 @@ Start Unitree motor interface:
 ros2 run unitree_control unitree_motor_node
 ```
 
-------------------------------------------------------------------------
 
-## Simulation
-
-### MATLAB / Simulink
-
-Dynamic modeling and analysis are located in:
-
-    simulators/matlab
-
-Includes:
-
--   symbolic dynamic model
--   controller analysis
--   parameter computation
-
-### Webots Simulation
-
-    cd simulators/webots
-    webots
-
-### MuJoCo Simulation
-
-    cd simulators/mujoco
-    python run_sim.py
 
 ------------------------------------------------------------------------
 
