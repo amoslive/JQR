@@ -42,7 +42,7 @@ Responsible for:
 - locomotion
 - balancing control
 
-The motor is controlled through a **CANOpen motor driver**.
+
 
 ### Waist Joint Motor
 
@@ -52,10 +52,10 @@ Responsible for:
 - dynamic motion generation (jumping)
 
 The waist actuator enables active body motion.
+The motor is controlled through a **CANOpen motor driver**.
 
 ---
-
-# Sensors
+## Sensors
 
 The robot uses the following sensors:
 
@@ -68,6 +68,24 @@ An **Inertial Measurement Unit (IMU)** is used to measure:
 
 The IMU provides feedback for the balancing controller.
 
+### Motor Encoders
+
+Each motor provides **encoder feedback**, which is used to measure:
+
+- wheel position
+- wheel angular velocity
+- waist joint position
+
+The encoder signals are used for motion control and state estimation.
+
+### Motor Torque Feedback
+
+The motor drivers provide **torque feedback**, which is used to measure:
+
+- wheel motor torque
+- waist joint torque
+
+Torque feedback is used for monitoring actuator performance and conducting motor torque experiments.
 ---
 
 # Control Hardware
@@ -91,4 +109,4 @@ The hardware platform is used for:
 - motor torque tracking
 - dynamic jumping experiments
 
-Experimental logs are recorded using **rosbag2**.
+Experimental logs are recorded using **txt** and  **csv**.
